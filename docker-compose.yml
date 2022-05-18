@@ -1,0 +1,55 @@
+version: "3"
+
+services:
+  hadoop:
+    image: hadoop-cluster:latest
+    container_name: hadoop-env
+    restart: always
+    ports:
+      - 8088:8088 
+      - 50070:50070
+      - 9000:9000
+    volumes:
+      - ./scripts:/scripts
+      - ./raw-data:/raw-data
+    env_file:
+      - ./.env
+    user: root
+    networks: 
+      - data_master
+
+  db:
+    image: mysql:5.7
+    container_name: data_master_db
+    ports:
+      - "3306:3306"
+    volumes:
+      - database-data:/data/mysql 
+      - ./scripts/sql/tabela_enem.sql:/docker-entrypoint-initdb.d/initdb.sql
+    environment:
+      MYSQL_ROOT_USER: root
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: enem
+      MYSQL_PASSWORD: root
+    restart: unless-stopped
+    networks: 
+      - data_master
+
+  mongo:
+    image: mongo
+    container_name: data_master_mongo_db
+    ports:
+      - 27017:27017
+    restart: unless-stopped
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: root
+      MONGO_INITDB_ROOT_PASSWORD: root
+    networks: 
+      - data_master
+
+volumes:
+  database-data:
+
+networks:
+  data_master:
+    driver: bridge
