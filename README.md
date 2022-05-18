@@ -6,7 +6,7 @@
 ### Download do Projeto
 
 ```
-git clone https://github.com/BretsCampos/Data_Master
+git clone https://github.com/BretsCampos/Data_Master.git
 ```
 
 ## Build da Imagem
