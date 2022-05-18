@@ -54,3 +54,7 @@ docker stop data_master_db
 docker stop data_master_mongo_db
 docker container prune
 ```
+
+## Projeto Twitter - Jupyter
+
+Para realizar o projeto do Twitter, deve-se importar os scripts que estão no diretório "jupyter" em um terminal do Jupyter e começar a rodar o "tweets_Santander.ipynb"
