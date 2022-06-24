@@ -5,9 +5,6 @@ import os
 
 enem = pd.read_csv("/raw-data/MICRODADOS_ENEM_2020.csv", sep=';', low_memory=False, nrows=2000, dtype=str,  encoding='latin-1')
 
-MYSQL_CONN_STRING = os.getenv('MYSQL_CONN_STRING')
-MYSQL_DATABASE = os.getenv('MYSQL_DATABASE')
-
 # TP_SEXO = sexo
 # TP_FAIXA_ETARIA = faixa etaria
 # TP_COR_RACA = raca
@@ -92,13 +89,7 @@ engine = sqlalchemy.create_engine(
     connection_string
 )
 
-#connection_string = MYSQL_CONN_STRING + "/" + MYSQL_DATABASE
-#engine = sqlalchemy.create_engine(
-#    connection_string
-#)
 
 enem.to_sql("enem_tratado", con=engine, index=False, if_exists='append', chunksize=1000)
 
-# print(enem.head)
-# print(enem.values)
 print(dict(enem.dtypes))
