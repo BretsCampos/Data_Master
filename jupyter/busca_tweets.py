@@ -37,4 +37,4 @@ if __name__ == '__main__':
     if len(sys.argv) == 3:
         get_tweets(sys.argv[1])
     else:
-        print ("Error: insira uma hashtag")
+        print ("Erro: insira uma hashtag")
