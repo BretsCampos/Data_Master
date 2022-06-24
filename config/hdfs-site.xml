@@ -9,4 +9,8 @@
     <name>dfs.permission</name>
     <value>false</value>
   </property>
+  <property>
+    <name>dfs.namenode.acls.enabled</name>
+    <value>true</value>
+  </property>
 </configuration>
